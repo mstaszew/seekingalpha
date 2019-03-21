@@ -14,15 +14,19 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
         </div>
     </nav>
-    <!-- the jumbotron -->
-    <div class="jumbotron bg-warning">
-        <h5 class="display-3">Welcome {{ user_name }}</h5>
-    </div>
     <div class="container">
+        <h3>Welcome {{ user_name }}</h3>
         <p>Choose users to follow:</p>
-        <ul>
+        <ul class="followlist list-group">
             {% for user in users %}
-                <li data-user-id="{{ user.user_id }}">{{ user.user_name }}, {{ user.group_name }} ({{ user.nooffollowers }}) <button type="button" class="btn btn-primary">Follow</button></li>
+                <li class='list-group-item'>
+                  <div class='alignleft'>
+                    {{ user.user_name }}, {{ user.group_name }} <span class='badge badge-primary badge-pill'>(<span id="user_{{ user.user_id }}_counter" class="followers_counter">{{ user.nooffollowers }}</span>)</span>
+                  </div>
+                  <div class='alignright'>
+                    <button type="button" class="btn btn-primary hidden" data-user-id="{{ user.user_id }}">Follow</button>
+                  </div>
+                </li>
             {% endfor %}
         </ul>
     </div>

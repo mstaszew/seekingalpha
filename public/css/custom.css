@@ -1,0 +1,43 @@
+.hidden {
+    display: none;
+}
+.container {
+    text-align: center;
+}
+.list-group-item {
+    max-width: 50%;
+    margin-left: 25%;
+    margin-right: 25%;
+}
+.alignleft {
+    text-align:left;
+    display: inline-block;
+    min-width: 200px;
+}
+.alignright {
+    text-align: right;
+    width: 25%;
+    display: inline-block;
+}
+.btn-primary.follow {
+    background-color: orange;
+    border-color: orange;
+}
+.btn-primary.follow:hover {
+    background-color: green;
+    border-color: green;
+}
+.btn-primary.unfollow {
+    background-color: green;
+    border-color: green;
+}
+.btn-primary.unfollow:hover {
+    background-color: red;
+    border-color: red;
+}
+.btn-primary.unfollow:after {
+    content: 'Following';
+}
+.btn-primary.unfollow:hover:after {
+    content: 'Unfollow';
+}

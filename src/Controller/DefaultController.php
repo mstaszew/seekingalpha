@@ -10,17 +10,16 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 class DefaultController extends AbstractController
 {
     private function init() {
-        if (!isset($_COOKIE['user_id'])) {
-            return $this->render('denied.html.twig', []);
-        }
         $utils = new Utils($this->getDoctrine());
         return $utils;
     }
+
     public function index()
     {
+        if (!isset($_COOKIE['user_id'])) return $this->render('denied.html.twig', []);
         $utils = $this->init();
         $users=$utils->getAllUsers();
-        return $this->render('index.html.twig', ['user_name'=>$utils->getUserNameById($_COOKIE['user_id']),
+        return $this->render('index.html.twig', ['user_name'=>$utils->getUserNameById(intval($_COOKIE['user_id'])),
             'users'=>$users]);
     }
     public function login()
@@ -30,13 +29,21 @@ class DefaultController extends AbstractController
         return $response;
     }
     public function getfollowing() {
+        if (!isset($_COOKIE['user_id'])) return $this->render('denied.html.twig', []);
         $utils = $this->init();
-        $response = new JsonResponse($utils->getfollowing($_COOKIE['user_id']));
+        $response = new JsonResponse($utils->getfollowing(intval($_COOKIE['user_id'])));
         return $response;
     }
     public function follow() {
+        if (!isset($_COOKIE['user_id'])) return $this->render('denied.html.twig', []);        
         $utils = $this->init();
-        $response = new JsonResponse($utils->follow($_REQUEST['author_id']));
+        $response = new JsonResponse($utils->follow(intval($_COOKIE['user_id']),intval($_REQUEST['author_id'])));
+        return $response;
+    }
+    public function unfollow() {
+        if (!isset($_COOKIE['user_id'])) return $this->render('denied.html.twig', []);
+        $utils = $this->init();
+        $response = new JsonResponse($utils->unfollow(intval($_COOKIE['user_id']),intval($_REQUEST['author_id'])));
         return $response;
     }
 }

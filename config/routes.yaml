@@ -10,3 +10,6 @@ getfollowing:
 follow:
     path: /follow
     controller: App\Controller\DefaultController::follow
+unfollow:
+    path: /unfollow
+    controller: App\Controller\DefaultController::unfollow
