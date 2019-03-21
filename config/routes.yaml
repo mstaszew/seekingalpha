@@ -1,3 +1,12 @@
 index:
     path: /
     controller: App\Controller\DefaultController::index
+login:
+    path: /login
+    controller: App\Controller\DefaultController::login
+getfollowing:
+    path: /getfollowing
+    controller: App\Controller\DefaultController::getfollowing
+follow:
+    path: /follow
+    controller: App\Controller\DefaultController::follow
